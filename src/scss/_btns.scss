@@ -1,0 +1,16 @@
+.prev {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -300px;
+	padding: 5px 20px;
+	cursor: pointer;
+}
+.next {
+	position: absolute;
+	top: 50%;
+	right: 50%;
+	margin-right: -300px;
+	padding: 5px 20px;
+	cursor: pointer;
+}
