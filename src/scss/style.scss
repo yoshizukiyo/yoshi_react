@@ -1,5 +1,21 @@
-@import 'reset';
-@import 'header';
-@import 'section';
-@import 'footer';
-@import 'btns';
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100&display=swap');
+
+$tablet: 1199px;
+$mobile: 759px;
+
+//common
+@import 'common/reset';
+@import 'common/header';
+@import 'common/footer';
+@import 'common/layout';
+
+//main
+@import 'main/visual';
+
+//sub
+@import 'sub/community';
+@import 'sub/department';
+@import 'sub/gallery';
+@import 'sub/location';
+@import 'sub/members';
+@import 'sub/youtube';
