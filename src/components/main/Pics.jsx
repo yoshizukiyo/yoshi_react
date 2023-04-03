@@ -1,7 +1,9 @@
-import React from 'react';
-
 function Pics() {
-	return <div>Pics</div>;
+	return (
+		<section id='pics' className='myScroll'>
+			<h1>Flickr</h1>
+		</section>
+	);
 }
 
 export default Pics;

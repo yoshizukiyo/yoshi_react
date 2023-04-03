@@ -1,7 +1,13 @@
-import React from 'react';
-
 function News() {
-	return <div>News</div>;
+	return (
+		<section id='news' className='myScroll'>
+			<h1>Recent News</h1>
+			<article></article>
+			<article></article>
+			<article></article>
+			<article></article>
+		</section>
+	);
 }
 
 export default News;

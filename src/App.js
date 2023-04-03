@@ -5,10 +5,7 @@ import Footer from './components/common/Footer';
 import Header from './components/common/Header';
 
 //main
-import News from './components/main/News';
-import Pics from './components/main/Pics';
-import Vids from './components/main/Vids';
-import Visual from './components/main/Visual';
+import Main from './components/main/Main';
 
 //sub
 import Community from './components/sub/Community';
@@ -23,47 +20,17 @@ import './scss/style.scss';
 function App() {
 	return (
 		<>
-			{/* Switch는 내부 라우터 경로에서 더 구체적인 라우터를 채택하고 나머지는 무시하거나 예외로 처리 */}
 			<Switch>
-				<Route exact path='/'>
-					{/* 메인전용 헤더 */}
-					<Header type={'main'} />
-					<Visual />
-					<News />
-					<Pics />
-					<Vids />
-				</Route>
-
-				<Route path='/'>
-					{/* 서브전용 헤더 */}
-					<Header type={'sub'} />
-				</Route>
+				<Route exact path='/' component={Main} />
+				<Route path='/' render={() => <Header type={'sub'} />} />
 			</Switch>
 
-			<Route path='/department'>
-				<Department />
-			</Route>
-
-			<Route path='/community'>
-				<Community />
-			</Route>
-
-			<Route path='/gallery'>
-				<Gallery />
-			</Route>
-
-			<Route path='/youtube'>
-				<Youtube />
-			</Route>
-
-			<Route path='/location'>
-				<Location />
-			</Route>
-
-			<Route path='/members'>
-				<Members />
-			</Route>
-
+			<Route path='/department' component={Department} />
+			<Route path='/community' component={Community} />
+			<Route path='/gallery' component={Gallery} />
+			<Route path='/youtube' component={Youtube} />
+			<Route path='/location' component={Location} />
+			<Route path='/members' component={Members} />
 			<Footer />
 		</>
 	);

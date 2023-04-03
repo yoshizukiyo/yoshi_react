@@ -11,20 +11,19 @@ function Department() {
 		});
 	}, []);
 
-	useEffect(() => {
-		console.log(Members);
-	}, [Members]);
-
 	return (
 		<Layout name={'Department'}>
 			{Members.map((member, idx) => {
+				let style = { color: '#555' };
+				if (idx === 2) style = { color: 'aqua' };
+
 				return (
 					<article key={idx}>
 						<div className='pic'>
 							<img src={`${process.env.PUBLIC_URL}/img/${member.pic}`} alt={member.name} />
 							<img src={`${process.env.PUBLIC_URL}/img/${member.pic}`} alt={member.name} />
 						</div>
-						<h2>{member.name}</h2>
+						<h2 style={style}>{member.name}</h2>
 						<p>{member.position}</p>
 					</article>
 				);
