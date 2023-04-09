@@ -1,15 +1,10 @@
 import { useRef, useEffect, useState } from 'react';
 import Anime from '../../asset/anime';
 
-function Btns() {
+function Btns({ setScrolled, setPos }) {
 	const [Num, setNum] = useState(0);
 	const btnRef = useRef(null);
 	const pos = useRef([]);
-
-	//미션1 - 컴포넌트 마운트시 첫번째 버튼 강제 활성화
-	//미션2 - 버튼 활성화구문을 반복문 처리
-	//미션3 - 현재 이벤트 연결문에서의 문제점 찾기
-	//미션4 - 버튼 활성화 시점의 문제점 찾기
 
 	useEffect(() => {
 		getPos();
@@ -17,8 +12,6 @@ function Btns() {
 		window.addEventListener('scroll', activation);
 		window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 
-		//window객체에 이벤트 연결시 라우터로 다른 서브페이지에서 컴포넌트 마운트시 불필요한 이벤트 동작이 되므로
-		//해당 컴포넌트가 unmount될 때 window에 연결된 이벤트 제거 (중요)
 		return () => {
 			window.removeEventListener('resize', getPos);
 			window.removeEventListener('scroll', activation);
@@ -31,6 +24,7 @@ function Btns() {
 		const secs = btnRef.current.parentElement.querySelectorAll('.myScroll');
 		for (const sec of secs) pos.current.push(sec.offsetTop);
 		setNum(pos.current.length);
+		setPos(pos.current);
 	};
 
 	//브라우저 스크롤시 호출되며 현재 스크롤 위치값에 따라 조건문으로 버튼활성화 함수
@@ -39,6 +33,7 @@ function Btns() {
 		const scroll = window.scrollY;
 		const btns = btnRef.current.children;
 		const boxs = btnRef.current.parentElement.querySelectorAll('.myScroll');
+		setScrolled(scroll);
 
 		pos.current.forEach((pos, idx) => {
 			if (scroll >= pos + base) {
@@ -76,3 +71,11 @@ function Btns() {
 }
 
 export default Btns;
+
+/*
+	eslint가 의존성 배열에 activation, getPos함수를 등록하고 권고문구를 띄우는 이유
+	- useEffect내부에서 getPos, activation이라는 외부함수를 사용하고 있으므로 리액트 입장에서는 해당함수가 변경될수도 있을때를 대비해서 의존성 배열에 등록할 것을 권고
+	- 이때 activation, getPos를 의존성 배열에 등록하면 해당 컴포넌트가 업데이트 될때마다 같은 함수임에도 불구하고 계속 호출하므로 불필요한 리소스가 낭비
+	- 추후 useCallback을 이용해서 해당 activation, getPos함수를 미리 메모이제이션처리 (메모리에 강제로 특정 값을 할당해서 저장처리)
+	- 메모이제이션 된 요소는 컴포넌트가 재호출되더라도 미리 메모리에 저장된 값을 재사용 (memo, useMemo, useCallback)
+*/
