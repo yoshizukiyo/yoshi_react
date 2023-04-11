@@ -20,7 +20,7 @@ function App15() {
 					//전위증감 연산자로 자기자신의 초기값에 연산된값을 바로 재할당해서 활용
 					//해당 사이클에서 바로 값이 변경되기 때문에 변수선언을 재할당이 가능한 let방식으로 선언
 					setNum(--Num);
-					console.log(Num * deg);
+					// console.log(Num * deg);
 					box.current.style.transform = `rotate(${Num * deg}deg)`;
 				}}>
 				left
@@ -28,7 +28,7 @@ function App15() {
 			<button
 				onClick={() => {
 					setNum(++Num);
-					console.log(Num * deg);
+					// console.log(Num * deg);
 					box.current.style.transform = `rotate(${Num * deg}deg)`;
 				}}>
 				right

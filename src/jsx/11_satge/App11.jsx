@@ -31,8 +31,8 @@ const arr1 = ['red', 'green', 'blue'];
 const arr2 = [...arr1, 'orange'];
 arr2[0] = 'violet';
 
-console.log('arr1', arr1);
-console.log('arr2', arr2);
+// console.log('arr1', arr1);
+// console.log('arr2', arr2);
 
 //전개연산자를 이용해서 복수개의 객체를 합쳐서 새로운 객체를 반환
 const info = {
@@ -45,5 +45,5 @@ const newInfo = {
 };
 //객체를 합칠때에는 변경될 property가 있는 객체를 뒤에 배치
 const resultInfo = { ...info, ...newInfo };
-console.log('resultInfo', resultInfo);
-console.log('info', info);
+// console.log('resultInfo', resultInfo);
+// console.log('info', info);

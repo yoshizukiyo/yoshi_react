@@ -17,14 +17,14 @@ const result = colors.forEach((data, idx) => {
 });
 */
 const result = colors.map((data, idx) => {
-	console.log(data);
-	console.log(idx);
+	// console.log(data);
+	// console.log(idx);
 	return data;
 });
-console.log(result);
+// console.log(result);
 result[0] = 'hotpink';
-console.log(result);
-console.log(colors);
+// console.log(result);
+// console.log(colors);
 
 function App9() {
 	return <></>;

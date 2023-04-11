@@ -1,6 +1,6 @@
 function App3() {
 	const handleClick = () => {
-		console.log('click1');
+		// console.log('click1');
 		alert('click1');
 	};
 	const handleClick2 = (txt) => console.log(txt);

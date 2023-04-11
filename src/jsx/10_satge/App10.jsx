@@ -9,7 +9,7 @@ const student1 = {
 //const name = student1.name;
 //const age = student1.age;
 const { name, age } = student1;
-console.log(name, age);
+// console.log(name, age);
 
 function App10() {
 	return (
