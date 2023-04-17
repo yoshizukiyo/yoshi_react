@@ -1,5 +1,4 @@
 function Pics({ Scrolled, pos }) {
-	console.log('pics');
 	const currentPos = Scrolled - pos;
 	const base = window.innerHeight / 2;
 	const modified = currentPos + base;

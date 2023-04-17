@@ -5,6 +5,7 @@
 			height: 50vh;
 			background: #000;
 			position: relative;
+			filter: saturate(0%) invert(0%) brightness(100%);
 		}
 
 		nav {
@@ -41,6 +42,29 @@
 					&.on {
 						background: #000;
 						color: orange;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: $mobile) {
+	.Location {
+		> .inner {
+			nav {
+				button {
+					width: 100%;
+					margin-bottom: 20px;
+				}
+
+				ul {
+					width: 100%;
+					display: flex;
+					justify-content: space-between;
+
+					li {
+						width: 30%;
 					}
 				}
 			}

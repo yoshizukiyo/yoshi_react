@@ -7,6 +7,7 @@ function Location() {
 	const [Index, setIndex] = useState(0);
 	const container = useRef(null);
 	const { kakao } = window;
+
 	const info = [
 		{
 			title: '삼성역 코엑스',
@@ -43,10 +44,26 @@ function Location() {
 			center: info[Index].latlng,
 			level: 3,
 		});
+
+		//휠로 줌기능 비활성화
+		mapInstance.setZoomable(false);
+
+		//지도위치 가운데 보정해주는 함수
+		const setCenter = () => {
+			mapInstance.setCenter(info[Index].latlng);
+		};
+
 		marker.setMap(mapInstance);
 		mapInstance.addControl(new kakao.maps.MapTypeControl(), kakao.maps.ControlPosition.BOTTOMLEFT);
 		mapInstance.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.LEFT);
 		setLocation(mapInstance);
+
+		//브라우저 리사이즈 이벤트에 setCenter연결
+		window.addEventListener('resize', setCenter);
+
+		return () => {
+			window.removeEventListener('resize', setCenter);
+		};
 	}, [Index]);
 
 	useEffect(() => {
