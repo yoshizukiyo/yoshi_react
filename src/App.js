@@ -14,6 +14,7 @@ import Gallery from './components/sub/Gallery';
 import Location from './components/sub/Location';
 import Members from './components/sub/Members';
 import Youtube from './components/sub/Youtube';
+import Parent from './Parent';
 
 import './scss/style.scss';
 
@@ -31,6 +32,7 @@ function App() {
 			<Route path='/youtube' component={Youtube} />
 			<Route path='/location' component={Location} />
 			<Route path='/members' component={Members} />
+			<Route path='/parent' component={Parent} />
 			<Footer />
 		</>
 	);
