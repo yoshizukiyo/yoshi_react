@@ -1,34 +1,23 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback, memo } from 'react';
 import Anime from '../../asset/anime';
 
 function Btns({ setScrolled, setPos }) {
+	console.log('btns');
 	const [Num, setNum] = useState(0);
 	const btnRef = useRef(null);
 	const pos = useRef([]);
 
-	useEffect(() => {
-		getPos();
-		window.addEventListener('resize', getPos);
-		window.addEventListener('scroll', activation);
-		window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-
-		return () => {
-			window.removeEventListener('resize', getPos);
-			window.removeEventListener('scroll', activation);
-		};
-	}, []);
-
 	//브라우저 리사이즈 호출되며 각 섹션별 세로 위치값 연산 함수
-	const getPos = () => {
+	const getPos = useCallback(() => {
 		pos.current = [];
 		const secs = btnRef.current.parentElement.querySelectorAll('.myScroll');
 		for (const sec of secs) pos.current.push(sec.offsetTop);
 		setNum(pos.current.length);
 		setPos(pos.current);
-	};
+	}, [setPos]);
 
 	//브라우저 스크롤시 호출되며 현재 스크롤 위치값에 따라 조건문으로 버튼활성화 함수
-	const activation = () => {
+	const activation = useCallback(() => {
 		const base = -window.innerHeight / 2;
 		const scroll = window.scrollY;
 		const btns = btnRef.current.children;
@@ -43,7 +32,19 @@ function Btns({ setScrolled, setPos }) {
 				boxs[idx].classList.add('on');
 			}
 		});
-	};
+	}, [setScrolled]);
+
+	useEffect(() => {
+		getPos();
+		window.addEventListener('resize', getPos);
+		window.addEventListener('scroll', activation);
+		window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
+		return () => {
+			window.removeEventListener('resize', getPos);
+			window.removeEventListener('scroll', activation);
+		};
+	}, [getPos, activation]);
 
 	return (
 		<ul className='scroll_navi' ref={btnRef}>
@@ -70,7 +71,7 @@ function Btns({ setScrolled, setPos }) {
 	);
 }
 
-export default Btns;
+export default memo(Btns);
 
 /*
 	eslint가 의존성 배열에 activation, getPos함수를 등록하고 권고문구를 띄우는 이유

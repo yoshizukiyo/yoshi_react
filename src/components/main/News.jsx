@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 
 function News() {
+	console.log('news');
 	const getLocalData = () => {
 		const dummy = [
 			{ title: 'Hello6', content: 'Here comes description in detail.' },
@@ -20,7 +21,8 @@ function News() {
 
 	useEffect(() => {
 		localStorage.setItem('post', JSON.stringify(Posts));
-	}, []);
+	}, [Posts]);
+
 	return (
 		<section id='news' className='myScroll'>
 			<h1>Recent News</h1>
@@ -38,4 +40,4 @@ function News() {
 	);
 }
 
-export default News;
+export default memo(News);

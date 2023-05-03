@@ -1,24 +1,21 @@
-import { forwardRef, useImperativeHandle } from 'react';
-
-/*
-const Child = () => {
-	return (
-		<article>
-			<h1>Child</h1>
-		</article>
-	);
-};
-*/
+import { forwardRef, useImperativeHandle, useState } from 'react';
 
 const Child = forwardRef((props, ref) => {
+	const [Open, setOpen] = useState(false);
+
 	useImperativeHandle(ref, () => {
-		return { name: 'apple' };
+		return { open: () => setOpen(true) };
 	});
 
 	return (
-		<article>
-			<h1>Child</h1>
-		</article>
+		<>
+			{Open && (
+				<article ref={ref}>
+					<h1>Child</h1>
+					<button onClick={() => setOpen(false)}>닫기</button>
+				</article>
+			)}
+		</>
 	);
 });
 

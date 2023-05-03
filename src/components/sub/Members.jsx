@@ -103,7 +103,7 @@ function Members() {
 			setVal(initVal);
 			history.push('/');
 		}
-	}, [Err]);
+	}, [Err, Submit, history, initVal]);
 
 	return (
 		<Layout name={'Members'}>

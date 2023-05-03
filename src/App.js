@@ -1,8 +1,10 @@
 import { Route, Switch } from 'react-router-dom';
+import { useRef } from 'react';
 
 //common
 import Footer from './components/common/Footer';
 import Header from './components/common/Header';
+import Menu from './components/common/Menu';
 
 //main
 import Main from './components/main/Main';
@@ -19,11 +21,15 @@ import Parent from './Parent';
 import './scss/style.scss';
 
 function App() {
+	//Menu에서 forwarding되는 값을 참조객체에 담음
+	const menu = useRef(null);
+
 	return (
 		<>
 			<Switch>
-				<Route exact path='/' component={Main} />
-				<Route path='/' render={() => <Header type={'sub'} />} />
+				{/* 각 메인, 서브페이지의 Header컴포넌트에 props로 전달 */}
+				<Route exact path='/' render={() => <Main menu={menu} />} />
+				<Route path='/' render={() => <Header type={'sub'} menu={menu} />} />
 			</Switch>
 
 			<Route path='/department' component={Department} />
@@ -34,6 +40,8 @@ function App() {
 			<Route path='/members' component={Members} />
 			<Route path='/parent' component={Parent} />
 			<Footer />
+			{/* 메뉴 패널을 메인, 서브페이지 상관없이 호출되도록 최상위 컴포넌트인 App에 호출 */}
+			<Menu ref={menu} />
 		</>
 	);
 }
