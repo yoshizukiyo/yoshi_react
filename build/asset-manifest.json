@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/yoshi_react/static/css/main.48c83a5b.css",
+    "main.js": "/yoshi_react/static/js/main.19a27d4c.js",
+    "index.html": "/yoshi_react/index.html",
+    "main.48c83a5b.css.map": "/yoshi_react/static/css/main.48c83a5b.css.map",
+    "main.19a27d4c.js.map": "/yoshi_react/static/js/main.19a27d4c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.48c83a5b.css",
+    "static/js/main.19a27d4c.js"
+  ]
+}
