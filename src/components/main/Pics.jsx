@@ -1,7 +1,11 @@
+import { useSelector } from 'react-redux';
+
 function Pics({ Scrolled, pos }) {
 	const currentPos = Scrolled - pos;
 	const base = window.innerHeight / 2;
 	const modified = currentPos + base;
+
+	const pics = useSelector((store) => store.flickr.data);
 
 	return (
 		<section id='pics' className='myScroll'>
@@ -18,6 +22,20 @@ function Pics({ Scrolled, pos }) {
 					}`,
 				}}
 			></article>
+
+			<ul style={{ display: 'flex' }}>
+				{pics.map((pic, idx) => {
+					if (idx >= 5) return null;
+					return (
+						<li key={idx}>
+							<img
+								src={`https://live.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}_m.jpg`}
+								alt={pic.title}
+							/>
+						</li>
+					);
+				})}
+			</ul>
 		</section>
 	);
 }

@@ -1,30 +1,36 @@
-import { useState, forwardRef, useImperativeHandle } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faYoutube, faSpotify } from '@fortawesome/free-brands-svg-icons';
+import { close } from '../../redux/menuSlice';
+import { useEffect } from 'react';
 
-const Menu = forwardRef((props, ref) => {
+function Menu() {
 	const active = { color: 'aqua' };
-	const [Open, setOpen] = useState(false);
+	const dispatch = useDispatch();
+	const { open } = useSelector((store) => store.menu);
 
-	useImperativeHandle(ref, () => {
-		return { toggle: () => setOpen(!Open) };
-	});
+	useEffect(() => {
+		window.addEventListener('resize', () => {
+			if (window.innerWidth >= 1000) dispatch(close());
+		});
+	}, [dispatch]);
+
 	return (
 		<AnimatePresence>
-			{Open && (
+			{open && (
 				<motion.nav
 					id='mobilePanel'
 					initial={{ x: -270, opacity: 0 }}
 					animate={{ x: 0, opacity: 1, transition: { duration: 0.5 } }}
 					exit={{ x: -270, opacity: 0, transition: { duration: 0.5 } }}
 				>
-					<h1 onClick={() => setOpen(false)}>
+					<h1 onClick={() => dispatch(close())}>
 						<Link to='/'>Logo</Link>
 					</h1>
 
-					<ul id='gnbMo' onClick={() => setOpen(false)}>
+					<ul id='gnbMo' onClick={() => dispatch(close())}>
 						<li>
 							<NavLink to='/department' activeStyle={active}>
 								Department
@@ -57,7 +63,7 @@ const Menu = forwardRef((props, ref) => {
 						</li>
 					</ul>
 
-					<ul className='brands' onClick={() => setOpen(false)}>
+					<ul className='brands' onClick={() => dispatch(close())}>
 						<li>
 							<FontAwesomeIcon icon={faTwitter} />
 						</li>
@@ -72,6 +78,6 @@ const Menu = forwardRef((props, ref) => {
 			)}
 		</AnimatePresence>
 	);
-});
+}
 
 export default Menu;
