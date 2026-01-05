@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import './button.css';
+import styles from './button.module.scss';
 
 /** Primary UI component for user interaction */
 export const Button = ({
@@ -14,7 +14,7 @@ export const Button = ({
   return (
     <button
       type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
+      className={[styles['storybook-button'], styles[`storybook-button--${size}`], styles[mode]].join(' ')}
       style={backgroundColor && { backgroundColor }}
       {...props}
     >

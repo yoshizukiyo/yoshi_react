@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import { Button } from './Button';
-import './header.css';
+import './header.module.scss';
 
 export const Header = ({ user = null, onLogin, onLogout, onCreateAccount }) => (
   <header>
