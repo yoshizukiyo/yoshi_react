@@ -8,14 +8,17 @@ export const Button = ({
   backgroundColor = null,
   size = 'medium',
   label,
+  onClick,
   ...props
 }) => {
   const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+
   return (
     <button
       type="button"
       className={[styles['storybook-button'], styles[`storybook-button--${size}`], styles[mode]].join(' ')}
       style={backgroundColor && { backgroundColor }}
+      onClick={onClick}
       {...props}
     >
       {label}
