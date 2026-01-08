@@ -9,7 +9,7 @@ export const Modal = ({ isOpen, onClose, title, children, contentProps, ...rest 
   return (
     <div className={styles.modalOverlay} {...rest}>
       <div className={styles.modalContent} {...contentProps}>
-        <div className={styles.modalHeader} >
+        <div className={styles.modalHeader} {...rest}>
           <h3>{title}</h3>
           <button className={styles.closeButton} onClick={onClose}>
             &times;
