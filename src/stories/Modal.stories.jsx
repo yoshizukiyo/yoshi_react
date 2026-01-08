@@ -24,6 +24,7 @@ export const Default = {
     title: '기본 모달',
     children: 'Storybook에서 렌더링된 모달 내용입니다.',
   },
+  name:'기본',
   decorators: [
     (Story) => (
       // Docs 페이지에서 fixed 포지션인 모달을 보여주기 위해 높이를 지정하고

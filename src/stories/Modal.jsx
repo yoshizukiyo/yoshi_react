@@ -19,7 +19,7 @@ export const Modal = ({ isOpen, onClose, title, children, contentProps, ...rest 
           {children}
         </div>
         <div className={styles.modalFooter}>
-          <Button label="닫기" onClick={onClose} size="small" />
+          <Button label="닫기" onClick={onClose} size="small" variant={'success'} />
         </div>
       </div>
     </div>

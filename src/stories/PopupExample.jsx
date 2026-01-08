@@ -4,12 +4,13 @@ import { Modal } from './Modal';
 
 export const PopupExample = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const items = ['111', '222', '333', '444', '555'];
 
   return (
     <div style={{ padding: '20px' , height:'300px' }}>
       <h1>팝업 테스트</h1>
       <Button
-        primary
+        variant='primary'
         label="팝업 열기"
         onClick={() => setIsModalOpen(true)}
       />
@@ -23,6 +24,15 @@ export const PopupExample = () => {
       >
         <p>이것은 alert 대신 띄우는 커스텀 팝업입니다.</p>
       </Modal>
+      <ul className="list-test">
+        {items.map((item, index) => {
+          return(
+            <li key={index}>
+              test {item}
+            </li>
+          )
+        })}
+        </ul>
     </div>
   );
 };

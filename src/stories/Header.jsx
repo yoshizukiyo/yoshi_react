@@ -36,7 +36,7 @@ export const Header = ({ user = null, onLogin, onLogout, onCreateAccount }) => (
         ) : (
           <>
             <Button size="small" onClick={onLogin} label="Log in" />
-            <Button primary size="small" onClick={onCreateAccount} label="Sign up" />
+            <Button variant='secondary' size="small" onClick={onCreateAccount} label="Sign up" />
           </>
         )}
       </div>

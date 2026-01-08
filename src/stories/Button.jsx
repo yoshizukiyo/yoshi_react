@@ -4,14 +4,15 @@ import styles from './button.module.scss';
 
 /** Primary UI component for user interaction */
 export const Button = ({
-  primary = false,
+  variant = 'primary', // primary(bool) 대신 variant(string) 사용, 기본값은 'primary'
   backgroundColor = null,
   size = 'medium',
   label,
   onClick,
   ...props
 }) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+  // variant 값(primary, secondary, success, warning, danger 등)을 클래스명에 바로 조합
+  const mode = `storybook-button--${variant}`;
 
   return (
     <button
@@ -28,7 +29,8 @@ export const Button = ({
 
 Button.propTypes = {
   /** Is this the principal call to action on the page? */
-  primary: PropTypes.bool,
+  // 5가지 타입 중 하나만 선택 가능하도록 제한
+  variant: PropTypes.oneOf(['primary', 'secondary', 'success', 'warning', 'danger']),
   /** What background color to use */
   backgroundColor: PropTypes.string,
   /** How large should the button be? */
